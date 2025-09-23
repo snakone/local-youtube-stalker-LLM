@@ -1,0 +1,9 @@
+  <section #messagesContainer>
+    @for (msg of chat(); track msg.text) {
+      <div class="msg" [ngClass]="{'llama': msg.from !== 'user'}">
+        <b>{{ label()(msg.from) }}</b>
+        <span [innerHTML]="msg.text | markdown"></span>
+      </div>
+    }
+    <div class="thinking" [class]="!loading() ? 'hide' : null">Ollama está pensando...</div>
+  </section>

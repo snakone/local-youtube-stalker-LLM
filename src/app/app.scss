@@ -1,0 +1,21 @@
+header {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 1rem;
+  
+  nav {
+    display: flex;
+    gap: 1rem;
+    max-width: 920px;
+    margin: 0 auto;
+
+    a {
+      text-decoration: none;
+      color: #333;
+
+      &.active {
+        color: var(--llama-color);
+      }
+    }
+  }
+}

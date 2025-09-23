@@ -1,0 +1,17 @@
+<main>
+  <app-chat-box [chat]="chat()" [loading]="loading()"></app-chat-box>
+  <form (submit)="sendMessage(); $event.preventDefault()">
+    <input
+      type="text"
+      [value]="input()"
+      (input)="input.set($event.target.value)"
+      placeholder="Escribe tu mensaje..."
+      [disabled]="loading()"
+      autofocus
+      name="input"
+      autocomplete="false"
+      spellcheck="false"
+    />
+    <button type="submit" [disabled]="loading() || !input().trim()">Enviar</button>
+  </form>
+</main>

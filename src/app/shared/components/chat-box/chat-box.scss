@@ -1,0 +1,83 @@
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding-bottom: 8px;
+  min-height: 0;
+  width: 100%;
+
+  & > div.msg {
+    display: flex;
+    align-items: flex-start;
+
+    &.llama b {
+      color: var(--llama-color);
+    }
+  }
+
+  & > div.msg:not(.llama) {
+    animation: chat-fade-in-x 0.5s cubic-bezier(.33,1.02,.57,1) both;
+    will-change: opacity, transform;
+  }
+
+  & b {
+    min-width: 74px;
+    font-weight: 600;
+    color: #4a90e2;
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+  }
+
+  & span {
+    background: #e6eaf3;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 15px;
+    word-break: break-word;
+    display: inline-block;
+    min-height: 36px;
+    min-width: 42px;
+  }
+
+  & > div:nth-child(odd) span {
+    background: #d1f5d3;
+    color: #1a4d1a;
+  }
+
+  & > div:nth-child(even) span {
+    background: #e6eaf3;
+    color: #222;
+  }
+
+  &  > div:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes chat-fade-in-x {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.hide {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  section span {
+    max-width: 70vw;
+  }
+}
+
+.thinking {
+  margin-block: 1.5rem;
+  color: #7a2baf;
+}

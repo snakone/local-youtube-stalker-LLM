@@ -1,1 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-color: #efefff;
+  --llama-color: #ff9800;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+main {
+  max-width: 1080px;
+  margin: 20px auto 0;
+  padding: 24px 16px 16px 16px;
+  background: var(--background-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  height: 89dvh;
+  min-height: 400px;
+  position: relative;
+}
+
+ul, ol {
+  margin: 16px;
+
+  & li {
+    margin-bottom: 16px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+p + p, p + ol, p + ul {
+  margin-top: 16px;
+}
+
+pre + p, ul + p {
+  margin-top: 24px;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 12px;
+  background: var(--background-color);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s;
+  background: #fff;
+}
+
+input[type="text"]:focus {
+  border-color: #4a90e2;
+}
+
+button[type="submit"] {
+  padding: 10px 18px;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+app-chat-box {
+  display: flex;
+  height: 100%;
+}

@@ -1,0 +1,19 @@
+<header>
+  <nav>
+    @for (item of items; track item.route) {
+      <div [routerLink]="item.route" 
+           [ngClass]="{'disabled': item.disabled}">
+        <img [src]="item.image"/>
+        <a routerLinkActive="active">{{item.label}}</a>
+      </div>
+    }
+
+    <div class="llm-selector">
+      <select (change)="selected.set($any($event.target).value)">
+        @for (option of options; track option; let i = $index) {
+          <option [value]="option" [selected]="i === 0">{{option}}&nbsp;&nbsp;</option>
+        }
+      </select>
+    </div>
+  </nav>
+</header>

@@ -2,21 +2,22 @@ import { Component, effect, inject, signal, untracked } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
 
-import { OllamaService } from '@core/API/ollama.api';
-import { YoutubeService } from '@core/API/youtube.api';
+import { OllamaService } from '@core/api/ollama.api';
+import { YoutubeService } from '@core/api/youtube.api';
 import { ChatBoxComponent } from '@shared/components/chat-box/chat-box';
 import { ChatMessage, PromptType, Subtitle, VideoDetails } from '@shared/definitions/interfaces';
 import { PROMPT_TYPE, RADIO_TYPES } from '@shared/utils/const.utils';
 import { extractYouTubeId } from '@shared/utils/utils.functions';
+import { Autofocus } from "@shared/directives/autofocus";
 
 @Component({
   selector: 'app-youtube',
-  imports: [ChatBoxComponent],
+  imports: [ChatBoxComponent, Autofocus],
   templateUrl: './youtube.html',
   styleUrl: './youtube.scss'
 })
 
-export class YoutubeComponent {
+export class YoutubePage {
 
   private llama = inject(OllamaService);
   private youtube = inject(YoutubeService);

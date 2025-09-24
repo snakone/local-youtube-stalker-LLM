@@ -1,0 +1,10 @@
+.mat-mdc-snack-bar-action {
+  color: var(--llama-color) !important;
+}
+
+.cdk-overlay-pane {
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute !important;
+}

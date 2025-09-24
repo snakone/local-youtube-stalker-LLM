@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { YoutubePage } from './youtube';
+import { InstallPage } from './install';
 
-describe('YoutubePage', () => {
-  let component: YoutubePage;
-  let fixture: ComponentFixture<YoutubePage>;
+describe('InstallPage', () => {
+  let component: InstallPage;
+  let fixture: ComponentFixture<InstallPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [YoutubePage]
+      imports: [InstallPage]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(YoutubePage);
+    fixture = TestBed.createComponent(InstallPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

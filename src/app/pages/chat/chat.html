@@ -8,10 +8,10 @@
       (input)="input.set($event.target.value)"
       placeholder="Escribe tu mensaje..."
       [disabled]="loading()"
-      autofocus
       name="input"
       autocomplete="false"
       spellcheck="false"
+      llamaFocus
     />
     <button type="submit" [disabled]="loading() || !input().trim()">Enviar</button>
   </form>

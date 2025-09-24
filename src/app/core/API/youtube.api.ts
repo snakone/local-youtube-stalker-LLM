@@ -6,6 +6,7 @@ import { HttpService } from "../http.service";
 import { VideoDetailsResponse } from "@shared/definitions/interfaces";
 
 const URI = 'http://localhost:3000';
+const route = 'youtube';
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,7 +17,7 @@ export class YoutubeService {
   constructor() {}
 
   public getVideoDetails(id: string, lang = 'es'): Observable<VideoDetails> {
-    return this.http.get<VideoDetailsResponse>(`${URI}?id=${id}&lang=${lang}`)
+    return this.http.get<VideoDetailsResponse>(`${URI}/${route}?id=${id}&lang=${lang}`)
                      .pipe(
                       filter(res => res.ok),
                       map((res) => res.details));

@@ -1,17 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
 
-import { OllamaService } from '@core/API/ollama.api';
+import { OllamaService } from '@core/api/ollama.api';
 import { ChatMessage } from '@shared/definitions/interfaces';
 import { ChatBoxComponent } from '@shared/components/chat-box/chat-box';
+import { Autofocus } from '@shared/directives/autofocus';
 
 @Component({
   selector: 'app-chat',
-  imports: [ChatBoxComponent],
+  imports: [ChatBoxComponent, Autofocus],
   templateUrl: './chat.html',
   styleUrl: './chat.scss'
 })
 
-export class ChatComponent {
+export class ChatPage {
   private llama = inject(OllamaService);
 
   chat = signal<ChatMessage[]>([]);
@@ -42,7 +43,7 @@ export class ChatComponent {
       },
       complete: () => {
         this.loading.set(false);
-      }
+      },
     });
   }
 

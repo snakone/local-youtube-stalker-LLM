@@ -1,0 +1,53 @@
+ul, ol {
+  margin: 1rem;
+
+  & li {
+    margin-bottom: 1rem;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+p + p, p + ol, p + ul, p + pre {
+  margin-top: 1rem;
+}
+
+pre + p, ul + p {
+  margin-top: 1.5rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+p + h3, ul + h3 {
+  margin-top: 2rem;
+}
+
+ul +p + ul {
+  margin-top: 1.6rem;
+}
+
+ul + p + h3 {
+  margin-top: 3rem;
+}
+
+.install {
+  & p {
+    margin-bottom: 1rem;
+  }
+
+  & ul {
+    list-style: initial;
+  }
+
+  & code {
+    color: rgb(192, 192, 192);
+    margin-left: 1rem;
+    padding: 8px;
+    background-color: #333;
+    border-radius: 8px;
+  }
+}

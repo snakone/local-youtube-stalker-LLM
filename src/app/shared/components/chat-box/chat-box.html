@@ -1,5 +1,5 @@
   <section #messagesContainer>
-    @for (msg of chat(); track msg.text) {
+    @for (msg of chat(); let i = $index; track i + msg.text) {
       <div class="msg" [ngClass]="{'llama': msg.from !== 'user'}">
         <b>{{ label()(msg.from) }}</b>
         <span [innerHTML]="msg.text | markdown"></span>

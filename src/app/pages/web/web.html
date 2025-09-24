@@ -1,8 +1,8 @@
 <form (submit)="search(input.value); $event.preventDefault()">
   <input
       type="text"
-      [value]="videoId()"
-      placeholder="Introduce el enlace o Id del vídeo..."
+      [value]="url()"
+      placeholder="Introduce la URL de la web..."
       llamaFocus
       name="input"
       autocomplete="false"
@@ -12,7 +12,7 @@
       (input)="input.value = $event.target.value"
     />
     
-  <button type="submit" [disabled]="loading() || !input.value">Buscar</button>
+  <button type="submit" [disabled]="loading() || !input.value || isURLInValid(input.value)">Buscar</button>
   
   <div>
     @for(radio of radioTypes; track radio.value) {

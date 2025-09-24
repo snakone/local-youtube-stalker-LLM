@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { CrafterService } from '@core/crafter.service';
+import { LLMService } from '@shared/components/header/header.service';
 import { Observable } from 'rxjs';
 
 const URI = 'http://localhost:11434';
@@ -7,10 +9,11 @@ const URI = 'http://localhost:11434';
 
 export class OllamaService {
   private apiUrl = `${URI}/api/generate`;
+  private crafter = inject(CrafterService);
 
   constructor() {}
 
-  public runStream(prompt: string, model = 'gemma3:latest'): Observable<string> {
+  public runStream(prompt: string, model = LLMService.selected()): Observable<string> {
     return new Observable<string>(observer => {
       const body = {
         model,
@@ -28,6 +31,12 @@ export class OllamaService {
       })
         .then(response => {
           if (!response.body) throw new Error('No stream body');
+
+          if (response.status === 404 && !response.ok) {
+            this.crafter.openSnackBar('Módelo no encontrado. Prueba de instalarlo en Ollama.', 'Cerrar');
+            observer.error(new Error('Not Found 404'));
+          }
+
           const reader = response.body.getReader();
           const decoder = new TextDecoder();
 

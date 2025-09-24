@@ -6,7 +6,7 @@ section {
   min-height: 0;
   width: 100%;
   max-height: 744px;
-  padding: 16px;
+  padding: 1rem;
   scrollbar-width: thin;
 
   & > div.msg {
@@ -53,7 +53,7 @@ section {
     color: #222;
   }
 
-  &  > div:last-child {
+  & > div:last-child {
     margin-bottom: 0;
   }
 }

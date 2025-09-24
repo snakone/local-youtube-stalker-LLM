@@ -14,7 +14,7 @@ section {
     align-items: flex-start;
 
     &.llama b {
-      color: var(--llama-color);
+      color: var(--primary-color);
     }
   }
 
@@ -75,6 +75,6 @@ section {
 
 .thinking {
   margin-top: 1.5rem;
-  color: #7a2baf;
+  color: var(--secondary-color);
   text-align: right;
 }

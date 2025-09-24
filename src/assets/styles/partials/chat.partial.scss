@@ -6,24 +6,29 @@ ul, ol {
   }
 }
 
-ul {
-  list-style: none;
-}
-
 p + p, p + ol, p + ul, p + pre {
   margin-top: 1rem;
 }
 
-pre + p, ul + p {
+pre + p, ul + p, ul + ol {
   margin-top: 1.5rem;
+}
+
+h4 {
+  margin: 1.5rem 0 1rem;
+  color: var(--secondary-color);
 }
 
 h2 {
   margin-bottom: 1.5rem;
 }
 
-p + h3, ul + h3 {
+p + h3, ul + h3, p + h2, ul + h4 {
   margin-top: 2rem;
+}
+
+ul + h2 {
+  margin-top: 2.5rem;
 }
 
 ul +p + ul {
@@ -34,13 +39,13 @@ ul + p + h3 {
   margin-top: 3rem;
 }
 
+h3 + p {
+  margin-top: 1rem;
+}
+
 .install {
   & p {
     margin-bottom: 1rem;
-  }
-
-  & ul {
-    list-style: initial;
   }
 
   & code {
@@ -49,5 +54,17 @@ ul + p + h3 {
     padding: 8px;
     background-color: #333;
     border-radius: 8px;
+  }
+}
+
+.about {
+  & h3 {
+    color: var(--secondary-color);
+  }
+}
+
+.youtube, .web {
+  & section {
+    max-height: 700px !important;
   }
 }

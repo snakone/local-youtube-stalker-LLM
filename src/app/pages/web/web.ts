@@ -1,6 +1,7 @@
 import { Component, effect, inject, signal, untracked } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { catchError, of } from 'rxjs';
+import { MatIcon } from '@angular/material/icon';
 
 import { OllamaService } from '@core/api/ollama.api';
 import { ScrapperService } from '@core/api/scrapper.api';
@@ -14,7 +15,7 @@ const httpsRegex = /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}.*$/;
 
 @Component({
   selector: 'app-web',
-  imports: [ChatBoxComponent, Autofocus],
+  imports: [ChatBoxComponent, Autofocus, MatIcon],
   templateUrl: './web.html',
   styleUrl: './web.scss'
 })
@@ -29,13 +30,14 @@ export class WebPage {
   chat = signal<ChatMessage[]>([]);
   loading = signal(false);
   type = signal<PromptType>('resume');
-  radioTypes = RADIO_TYPES.filter(type => type.value !== 'humor');;
+  radioTypes = RADIO_TYPES.filter(type => type.value !== 'humor');
+  controller: AbortController | undefined;
 
   userResource = rxResource<string | null, string>({
     params: () => this.url(),
     stream: ({ params: url }) => url ? this.scrapper.scrappePage(url)
     .pipe(catchError(err => {
-      this.crafter.openSnackBar("Página web no encontrada. Revisa la URL.")
+      this.crafter.openSnackBar("Página web no encontrada. Revisa la URL.");
       throw new Error(err.error.message);
     })) : of(null),
   });
@@ -47,8 +49,10 @@ export class WebPage {
         this.start();
         let accumulated = '';
         const prompt = this.getPrompt(text);
+        this.controller = new AbortController();
       
-        this.llama.runStream(prompt).subscribe({
+        this.llama.runStream({prompt, signal: this.controller.signal})
+        .subscribe({
           next: async (chunk) => {
             accumulated += chunk;
             this.chat.update(chat => [
@@ -84,8 +88,13 @@ export class WebPage {
     this.userResource.reload();
   }
 
-  public isURLInValid(url: string): boolean {
+  public urlInvalid(url: string): boolean {
+    if (!url) { return true; }
     return !httpsRegex.test(url.trim());
+  }
+
+  public stop(): void {
+    this.controller?.abort('Stopped');
   }
 
 }

@@ -1,7 +1,6 @@
 <form (submit)="search(input.value); $event.preventDefault()">
   <input
       type="text"
-      [value]="videoId()"
       placeholder="Introduce el enlace o Id del vídeo..."
       llamaFocus
       name="input"
@@ -13,6 +12,12 @@
     />
     
   <button type="submit" [disabled]="loading() || !input.value">Buscar</button>
+
+  <button type="reset" 
+          [disabled]="!loading()" 
+          (click)="stop()">
+    <mat-icon>stop</mat-icon>
+  </button>
   
   <div>
     @for(radio of radioTypes; track radio.value) {
@@ -28,6 +33,6 @@
   </div>
 </form>
 
-<main>
+<main class="youtube">
   <app-chat-box [chat]="chat()" [loading]="loading()"/>
 </main>

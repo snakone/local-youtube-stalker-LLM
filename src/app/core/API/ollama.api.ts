@@ -1,9 +1,16 @@
 import { inject, Injectable } from '@angular/core';
-import { CrafterService } from '@core/crafter.service';
-import { LLMService } from '@shared/components/header/header.service';
 import { Observable } from 'rxjs';
 
+import { CrafterService } from '@core/crafter.service';
+import { LLMService } from '@shared/components/header/header.service';
+
 const URI = 'http://localhost:11434';
+
+interface StreamLLM {
+  prompt: string;
+  model?: string,
+  signal: AbortSignal
+}
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,10 +20,10 @@ export class OllamaService {
 
   constructor() {}
 
-  public runStream(prompt: string, model = LLMService.selected()): Observable<string> {
+  public runStream({prompt, model, signal}: StreamLLM): Observable<string> {
     return new Observable<string>(observer => {
       const body = {
-        model,
+        model: model || LLMService.selected(),
         prompt,
         options: {
           temperature: 0.3,
@@ -28,6 +35,7 @@ export class OllamaService {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+        signal
       })
         .then(response => {
           if (!response.body) throw new Error('No stream body');

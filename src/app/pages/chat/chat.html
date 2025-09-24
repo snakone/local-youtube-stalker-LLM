@@ -1,18 +1,24 @@
 <main>
   <app-chat-box [chat]="chat()" [loading]="loading()"/>
   
-  <form (submit)="sendMessage(); $event.preventDefault()">
+  <form (submit)="sendMessage(input.value); $event.preventDefault()">
     <input
       type="text"
-      [value]="input()"
-      (input)="input.set($event.target.value)"
+      (input)="input.value = $event.target.value"
       placeholder="Escribe tu mensaje..."
       [disabled]="loading()"
       name="input"
       autocomplete="false"
       spellcheck="false"
       llamaFocus
+      #input
     />
-    <button type="submit" [disabled]="loading() || !input().trim()">Enviar</button>
+    <button type="submit" [disabled]="loading() || !input.value.trim()">Enviar</button>
+
+    <button type="reset" 
+            [disabled]="!loading()" 
+            (click)="stop()">
+      <mat-icon>stop</mat-icon>
+    </button>
   </form>
 </main>

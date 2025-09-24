@@ -1,7 +1,6 @@
 <form (submit)="search(input.value); $event.preventDefault()">
   <input
       type="text"
-      [value]="url()"
       placeholder="Introduce la URL de la web..."
       llamaFocus
       name="input"
@@ -12,7 +11,13 @@
       (input)="input.value = $event.target.value"
     />
     
-  <button type="submit" [disabled]="loading() || !input.value || isURLInValid(input.value)">Buscar</button>
+  <button type="submit" [disabled]="loading() || urlInvalid(input.value)">Buscar</button>
+
+  <button type="reset" 
+          [disabled]="!loading()" 
+          (click)="stop()">
+    <mat-icon>stop</mat-icon>
+  </button>
   
   <div>
     @for(radio of radioTypes; track radio.value) {
@@ -28,6 +33,6 @@
   </div>
 </form>
 
-<main>
+<main class="web">
   <app-chat-box [chat]="chat()" [loading]="loading()"/>
 </main>

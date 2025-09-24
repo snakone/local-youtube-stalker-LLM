@@ -2,6 +2,9 @@
 @use './assets/styles/index.scss';
 
 html {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+
   @include mat.theme((
     color: (
       primary: mat.$cyan-palette,
@@ -24,8 +27,10 @@ body {
 
 :root {
   --background-color: #efefff;
-  --llama-color: #ff9800;
+  --primary-color: #ff9800;
   --container-width: 1080px;
+  --secondary-color: #7a2baf;
+  --input-color: #4a90e2;
 }
 
 * {

@@ -1,11 +1,12 @@
-import { Component, effect, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+
 import { OllamaService } from '@core/API/ollama.api';
 import { ChatMessage } from '@shared/definitions/interfaces';
-import { ChatBox } from '@shared/components/chat-box/chat-box';
+import { ChatBoxComponent } from '@shared/components/chat-box/chat-box';
 
 @Component({
   selector: 'app-chat',
-  imports: [ChatBox],
+  imports: [ChatBoxComponent],
   templateUrl: './chat.html',
   styleUrl: './chat.scss'
 })
@@ -16,31 +17,14 @@ export class ChatComponent {
   chat = signal<ChatMessage[]>([]);
   input = signal('');
   loading = signal(false);
-  label = signal((from: 'user' | 'ollama') => from === 'user' ? 'Tú:' : 'Ollama:');
-
-  @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
-
-  constructor() {
-    effect(() => {
-      this.chat();
-      queueMicrotask(() => {
-        const el = this.messagesContainer?.nativeElement;
-        if (el) el.scrollTop = el.scrollHeight;
-      });
-    });
-  }
 
   public sendMessage(): void {
     const text = this.input().trim();
     if (!text || this.loading()) return;
 
-    this.chat.update(chat => [...chat, { from: 'user', text }]);
-    this.input.set('');
-    this.loading.set(true);
-
+    this.start(text);
     const index = this.chat().length;
     this.chat.update(chat => [...chat, { from: 'ollama', text: '' }]);
-
     let accumulated = '';
 
     this.llama.runStream(text).subscribe({
@@ -60,6 +44,12 @@ export class ChatComponent {
         this.loading.set(false);
       }
     });
+  }
+
+  private start(text: string): void {
+    this.chat.update(chat => [...chat, { from: 'user', text }]);
+    this.input.set('');
+    this.loading.set(true);
   }
 
 }

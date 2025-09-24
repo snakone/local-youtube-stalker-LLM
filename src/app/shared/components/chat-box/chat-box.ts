@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, ElementRef, model, signal, ViewChild } from '@angular/core';
+import { Component, computed, effect, ElementRef, model, ViewChild } from '@angular/core';
+
 import { ChatMessage } from '@shared/definitions/interfaces';
 import { MarkdownPipe } from '@shared/pipes/markdown.pipe';
 
@@ -10,12 +11,28 @@ import { MarkdownPipe } from '@shared/pipes/markdown.pipe';
   styleUrl: './chat-box.scss'
 })
 
-export class ChatBox {
-
+export class ChatBoxComponent {
   @ViewChild('messagesContainer') messagesContainer?: ElementRef<HTMLDivElement>;
 
-  chat = model<ChatMessage[]>([]);
-  label = signal((from: 'user' | 'ollama') => from === 'user' ? 'Tú:' : 'Ollama:');
-  loading = model(false);
+  readonly chat = model<ChatMessage[]>([]);
+  readonly loading = model(false);
+
+  readonly label = computed(() => (from: 'user' | 'ollama') =>
+    from === 'user' ? 'Tú:' : 'Ollama:'
+  );
+
+  constructor() {
+    effect(() => {
+      this.chat();
+      queueMicrotask(() => this.scrollToBottom());
+    });
+  }
+
+  private scrollToBottom(): void {
+    const el = this.messagesContainer?.nativeElement;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }
 
 }

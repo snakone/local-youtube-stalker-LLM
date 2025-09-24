@@ -1,6 +1,7 @@
 :root {
   --background-color: #efefff;
   --llama-color: #ff9800;
+  --container-width: 1080px;
 }
 
 * {
@@ -14,9 +15,8 @@ body {
 }
 
 main {
-  max-width: 1080px;
-  margin: 20px auto 0;
-  padding: 24px 16px 16px 16px;
+  max-width: var(--container-width);
+  margin: 20px auto;
   background: var(--background-color);
   border-radius: 16px;
   box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
@@ -24,9 +24,8 @@ main {
   flex-direction: column;
   gap: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
-  height: 89dvh;
-  min-height: 400px;
   position: relative;
+  min-height: 71px;
 }
 
 ul, ol {
@@ -41,25 +40,12 @@ ul {
   list-style: none;
 }
 
-p + p, p + ol, p + ul {
+p + p, p + ol, p + ul, p + pre {
   margin-top: 16px;
 }
 
 pre + p, ul + p {
   margin-top: 24px;
-}
-
-form {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding-top: 12px;
-  background: var(--background-color);
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
 }
 
 input[type="text"] {
@@ -89,7 +75,7 @@ button[type="submit"] {
   transition: background 0.2s;
 }
 
-app-chat-box {
-  display: flex;
-  height: 100%;
+button[type="submit"]:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
 }

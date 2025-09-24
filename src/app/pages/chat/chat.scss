@@ -1,6 +1,19 @@
-button[type="submit"]:disabled {
-  background: #b0c4de;
-  cursor: not-allowed;
+form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  position: fixed;
+  z-index: 5;
+  width: var(--container-width);
+  bottom: 24px;
+  max-width: var(--container-width);
+  margin: 20px auto;
+  padding: 16px;
+  background: var(--background-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (max-width: 600px) {

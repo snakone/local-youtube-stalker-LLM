@@ -23,3 +23,5 @@ export interface ServerResponse {
   ok: boolean;
   error?: string;
 }
+
+export type PromptType = 'resume' | 'critic' | 'humor';

@@ -1,5 +1,6 @@
 <main>
-  <app-chat-box [chat]="chat()" [loading]="loading()"></app-chat-box>
+  <app-chat-box [chat]="chat()" [loading]="loading()"/>
+  
   <form (submit)="sendMessage(); $event.preventDefault()">
     <input
       type="text"

@@ -3,9 +3,11 @@ section {
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
-  padding-bottom: 8px;
   min-height: 0;
   width: 100%;
+  max-height: 744px;
+  padding: 16px;
+  scrollbar-width: thin;
 
   & > div.msg {
     display: flex;
@@ -71,13 +73,8 @@ section {
   opacity: 0;
 }
 
-@media (max-width: 600px) {
-  section span {
-    max-width: 70vw;
-  }
-}
-
 .thinking {
-  margin-block: 1.5rem;
+  margin-top: 1.5rem;
   color: #7a2baf;
+  text-align: right;
 }

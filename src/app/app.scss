@@ -2,16 +2,19 @@ header {
   background: #fff;
   border-bottom: 1px solid #eee;
   padding: 1rem;
+  position: sticky;
+  top: 0;
   
   nav {
     display: flex;
     gap: 1rem;
-    max-width: 920px;
+    max-width: var(--container-width);
     margin: 0 auto;
 
     a {
       text-decoration: none;
       color: #333;
+      font-weight: bold;
 
       &.active {
         color: var(--llama-color);

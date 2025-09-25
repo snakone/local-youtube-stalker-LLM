@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c4e230b9-865e-40af-9448-492e34cebbda/deploy-status)](https://app.netlify.com/projects/localyoutubestalker/deploys)
+
 # Local Youtube Stalker Client
 
 ## Instalación

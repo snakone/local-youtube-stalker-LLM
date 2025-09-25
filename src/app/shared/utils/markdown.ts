@@ -28,7 +28,7 @@ Sigue estos pasos para poder instalar **Local Youtube Stalker** de manera local.
 
 - Una vez instalado el servidor, ejecuta el siguiente comando para iniciar el servidor.
 
-\`tsc && npm start\`
+\`npx tsc && npm start\`
 `;
 
 export const ABOUT_MARKDOWN = `

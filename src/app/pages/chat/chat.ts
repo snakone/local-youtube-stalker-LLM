@@ -60,6 +60,13 @@ export class ChatPage {
 
   public stop(): void {
     this.controller?.abort('Stopped');
+    this.loading.set(false);
+  }
+
+  ngOnDestroy() {
+    if (this.controller?.signal) {
+      this.controller.abort();
+    }
   }
 
 }

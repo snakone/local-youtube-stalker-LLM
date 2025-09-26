@@ -40,7 +40,7 @@ Local Youtube Stalker Client (LYSC) es una aplicación totalmente **gratuita** q
 
 La aplicación incluye soporte para varios LLMs avanzados, cada uno con características únicas:
 
-- [gemma3:latest](https://ollama.com/library/gpt-oss:20b) – Ideal para conversaciones generales, resúmenes y análisis ligeros.
+- [gemma3:latest](https://ollama.com/library/gemma3:latest) – Ideal para conversaciones generales, resúmenes y análisis ligeros.
 - [qwen2.5-coder:latest](https://ollama.com/library/qwen2.5-coder) – Perfecto si quieres un enfoque más técnico o detallado en tus análisis y resúmenes.
 - [llama3.1:latest](https://ollama.com/library/llama3.1) – Versátil y equilibrado, combina creatividad y precisión en sus respuestas.
 
@@ -53,7 +53,7 @@ Local Youtube Stalker Client ofrece múltiples formas de interactuar con tus vid
 Conversa con el modelo que prefieras. Puedes preguntar, solicitar resúmenes o simplemente charlar y explorar la creatividad del LLM.
 
 ### 2. Evaluación de videos de YouTube
-Selecciona un video desde la barra superior y deja que la IA haga el trabajo por ti:  
+Introduce el Id or URL de un video desde la barra superior y deja que la IA haga el trabajo por ti:  
 - **Resúmenes rápidos**: obtén lo esencial sin ver todo el video.  
 - **Críticas y análisis**: recibe opiniones constructivas sobre el contenido.  
 - **Toques de humor**: la IA puede añadir comentarios graciosos para echar unas risas.  
